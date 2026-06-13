@@ -2617,10 +2617,10 @@ a.tooltips span:before {
 	margin:0;
 	font-family: 'Bitter', serif;
 }
-.contact2 {
-  width:100%;
-  height:360px;
-  border:none;
+.contact2{
+    width:100%;
+    height:700px;
+    border:none;
 }
 .contact-info li {
 	padding:10px 0;
@@ -2710,4 +2710,36 @@ a.tooltips span:before {
 
 .news-item:last-child {
     border-bottom: none;
+}
+
+
+
+.popup-form{
+    width:100%;
+    padding:15px;
+}
+
+.popup-form input,
+.popup-form textarea{
+    width:100%;
+    padding:10px;
+    margin-bottom:10px;
+    border:1px solid #ccc;
+    border-radius:4px;
+    box-sizing:border-box;
+}
+
+.popup-form textarea{
+    height:100px;
+    resize:none;
+}
+
+.popup-form button{
+    width:100%;
+    background:#e53935;
+    color:#fff;
+    border:none;
+    padding:12px;
+    cursor:pointer;
+    font-size:16px;
 }
