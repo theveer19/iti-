@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quick Enquiry</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+html,body{
+    font-family:Arial,sans-serif;
+    background:transparent;
+}
+
+.wrap{
+    padding:10px 14px 14px;
+}
+
+.info{
+    text-align:center;
+    font-size:13px;
+    color:#333;
+    line-height:1.5;
+    margin-bottom:12px;
+}
+
+.info b{ color:#f34a53; }
+
+.row{
+    display:flex;
+    gap:10px;
+    margin-bottom:10px;
+}
+
+.row > div{ flex:1; }
+
+input,textarea{
+    width:100%;
+    padding:10px;
+    border:1px solid #ddd;
+    background:#f7f7f7;
+    border-radius:4px;
+    font-size:14px;
+}
+
+textarea{ height:70px; resize:none; }
+
+button{
+    width:100%;
+    background:#f34a53;
+    color:#fff;
+    border:none;
+    padding:12px;
+    font-size:16px;
+    border-radius:5px;
+    cursor:pointer;
+    margin-top:2px;
+}
+
+button:hover{ background:#df3942; }
+button:disabled{ background:#ccc; cursor:not-allowed; }
+
+.privacy{
+    text-align:center;
+    margin-top:10px;
+    font-size:11px;
+    color:#666;
+}
+.privacy a{ color:#f34a53; }
+
+/* honeypot: hidden from real users, bots fill it */
+.hp-field{
+    position:absolute;
+    left:-9999px;
+    top:-9999px;
+    width:1px;height:1px;overflow:hidden;
+}
+
+@media(max-width:520px){
+    .row{ flex-direction:column; gap:10px; }
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <p class="info">
+    नयी / पुरानी आईटीआई खोलने एवं संबद्धता हेतु फॉर्म भरें एवं
+    <b>एक्सपर्ट्स</b> से <b>Free</b> सलाह पाएं।
+  </p>
+
+  <form id="enquiryForm">
+
+    <!-- Web3Forms required + email settings -->
+    <input type="hidden" name="access_key" value="4acc42f2-923a-4d59-a852-cf311f792331">
+    <input type="hidden" name="subject" value="New ITI Enquiry (Popup / Google Ads)">
+    <input type="hidden" name="from_name" value="ITI Affiliation Consultancy Website">
+
+    <!-- honeypot -->
+    <input type="checkbox" name="botcheck" class="hp-field" tabindex="-1" autocomplete="off">
+
+    <div class="row">
+      <div><input type="text" name="name" placeholder="नाम" required></div>
+      <div><input type="tel" name="phone" placeholder="फ़ोन नंबर" required></div>
+    </div>
+
+    <div class="row">
+      <div><input type="email" name="email" placeholder="ईमेल"></div>
+      <div><input type="text" name="location" placeholder="जिला / राज्य"></div>
+    </div>
+
+    <div class="row">
+      <div><textarea name="message" placeholder="यहाँ अपना संदेश लिखें"></textarea></div>
+    </div>
+
+    <button type="submit" id="submitBtn">भेजें</button>
+
+    <p class="privacy">
+      फॉर्म जमा करके आप हमारी
+      <a href="privacy-policy.html" target="_blank">Privacy Policy</a>
+      से सहमत होते हैं।
+    </p>
+
+  </form>
+
+</div>
+
+<script>
+document.getElementById('enquiryForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  const form = e.target;
+  const btn = document.getElementById('submitBtn');
+
+  btn.disabled = true;
+  btn.textContent = 'भेजा जा रहा है...';
+
+  const data = new FormData(form);
+
+  try {
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    });
+
+    const json = await res.json();
+
+    if (json.success === true) {
+      // This form lives inside an iframe (the popup). window.top navigates the
+      // WHOLE browser tab to thank-you.html — not just the iframe — so the
+      // Google Ads conversion tag on thank-you.html actually fires.
+      window.top.location.replace('thank-you.html');
+    } else {
+      alert('कुछ गड़बड़ हुई: ' + (json.message || 'दोबारा कोशिश करें।'));
+      btn.disabled = false;
+      btn.textContent = 'भेजें';
+    }
+
+  } catch (err) {
+    alert('नेटवर्क की समस्या है, दोबारा कोशिश करें।');
+    btn.disabled = false;
+    btn.textContent = 'भेजें';
+  }
+});
+</script>
+
+</body>
+</html>

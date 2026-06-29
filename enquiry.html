@@ -6,14 +6,10 @@
 <title>Quick Enquiry</title>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+*{margin:0;padding:0;box-sizing:border-box;}
 
 body{
-    font-family:Arial, sans-serif;
+    font-family:Arial,sans-serif;
     background:#fff;
     padding:20px;
 }
@@ -46,8 +42,7 @@ table{
     width:100%;
 }
 
-input,
-textarea{
+input,textarea{
     width:100%;
     padding:14px;
     border:1px solid #ddd;
@@ -69,19 +64,40 @@ button{
     font-size:20px;
     border-radius:5px;
     cursor:pointer;
-    transition:.3s;
 }
 
 button:hover{
     background:#df3942;
 }
 
-@media(max-width:768px){
+button:disabled{
+    background:#ccc;
+    cursor:not-allowed;
+}
 
-    table,
-    tbody,
-    tr,
-    td{
+.privacy{
+    text-align:center;
+    margin-top:15px;
+    font-size:13px;
+    color:#666;
+}
+
+.privacy a{
+    color:#f34a53;
+}
+
+/* honeypot: hidden from real users, bots fill it */
+.hp-field{
+    position:absolute;
+    left:-9999px;
+    top:-9999px;
+    width:1px;
+    height:1px;
+    overflow:hidden;
+}
+
+@media(max-width:768px){
+    table,tbody,tr,td{
         display:block;
         width:100%;
     }
@@ -112,47 +128,97 @@ button:hover{
 <b>एक्सपर्ट्स</b> द्वारा <b>Free</b> में जानकारी हासिल करें।
 </p>
 
-<form action="https://formspree.io/f/xlgkopna" method="POST">
+<form id="enquiryForm">
 
-<input type="hidden"
-       name="_next"
-       value="https://itiaffiliationconsultancy.com/thank-you.html">
+  <!-- Web3Forms required + email settings -->
+  <input type="hidden" name="access_key" value="4acc42f2-923a-4d59-a852-cf311f792331">
+  <input type="hidden" name="subject" value="New ITI Enquiry (Google Ads)">
+  <input type="hidden" name="from_name" value="ITI Affiliation Consultancy Website">
 
-<table>
-<tr>
-<td style="padding:8px;">
-<input type="text" name="name" placeholder="नाम" required>
-</td>
+  <!-- honeypot: real users never see/fill this; bots do and get rejected -->
+  <input type="checkbox" name="botcheck" class="hp-field" tabindex="-1" autocomplete="off">
 
-<td style="padding:8px;">
-<input type="tel" name="phone" placeholder="फ़ोन नंबर" required>
-</td>
-</tr>
+  <table>
+    <tbody>
+      <tr>
+        <td style="padding:8px;">
+          <input type="text" name="name" placeholder="नाम" required>
+        </td>
+        <td style="padding:8px;">
+          <input type="tel" name="phone" placeholder="फ़ोन नंबर" required>
+        </td>
+      </tr>
 
-<tr>
-<td style="padding:8px;">
-<input type="email" name="email" placeholder="ईमेल">
-</td>
+      <tr>
+        <td style="padding:8px;">
+          <input type="email" name="email" placeholder="ईमेल">
+        </td>
+        <td style="padding:8px;">
+          <input type="text" name="location" placeholder="जिला / राज्य">
+        </td>
+      </tr>
 
-<td style="padding:8px;">
-<input type="text" name="location" placeholder="जिला / राज्य">
-</td>
-</tr>
+      <tr>
+        <td style="padding:8px;">
+          <textarea name="message" placeholder="यहाँ अपना संदेश लिखें"></textarea>
+        </td>
+        <td style="padding:8px;text-align:center;vertical-align:middle;">
+          <button type="submit" id="submitBtn">भेजें</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
-<tr>
-<td style="padding:8px;">
-<textarea name="message" placeholder="यहाँ अपना संदेश लिखें"></textarea>
-</td>
-
-<td style="padding:8px;text-align:center;vertical-align:middle;">
-<button type="submit">भेजें</button>
-</td>
-</tr>
-</table>
+  <p class="privacy">
+    फॉर्म जमा करके आप हमारी
+    <a href="privacy-policy.html" target="_blank">Privacy Policy</a>
+    से सहमत होते हैं।
+  </p>
 
 </form>
 
 </div>
+
+<script>
+document.getElementById('enquiryForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  const form = e.target;
+  const btn = document.getElementById('submitBtn');
+
+  btn.disabled = true;
+  btn.textContent = 'भेजा जा रहा है...';
+
+  const data = new FormData(form);
+
+  try {
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    });
+
+    const json = await res.json();
+
+    // Web3Forms returns { success: true } only on a real, accepted submission.
+    // We redirect ONLY on confirmed success so the Google Ads conversion tag
+    // on thank-you.html fires for genuine leads and never on failures.
+    if (json.success === true) {
+      window.location.replace('https://www.itiaffiliationconsultancy.com/thank-you.html');
+    } else {
+      alert('कुछ गड़बड़ हुई: ' + (json.message || 'दोबारा कोशिश करें।'));
+      btn.disabled = false;
+      btn.textContent = 'भेजें';
+    }
+
+  } catch (err) {
+    // Network failure — never let a paid lead vanish silently; ask them to retry.
+    alert('नेटवर्क की समस्या है, दोबारा कोशिश करें।');
+    btn.disabled = false;
+    btn.textContent = 'भेजें';
+  }
+});
+</script>
 
 </body>
 </html>
