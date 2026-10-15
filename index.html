@@ -66,6 +66,39 @@
   ga('send', 'pageview');
 
 </script>
+<style>
+.dstc{position:relative;max-width:1170px;margin:20px auto 10px;padding:0 15px;font-family:'Droid Sans',Arial,sans-serif}
+.dstc-view{position:relative;overflow:hidden;border-radius:10px;box-shadow:0 6px 20px rgba(0,0,0,.18)}
+.dstc-track{display:flex;transition:transform .6s ease}
+.dstc-slide{flex:0 0 100%;min-height:210px;box-sizing:border-box;padding:34px 70px;color:#fff;display:flex;flex-direction:column;justify-content:center;text-align:center}
+.dstc-s1{background:linear-gradient(135deg,#f34a53 0%,#b3152a 100%)}
+.dstc-s2{background:linear-gradient(135deg,#13a7d7 0%,#0b5f8f 100%)}
+.dstc-s3{background:linear-gradient(135deg,#1f9d55 0%,#0f6b3a 100%)}
+.dstc-tag{display:inline-block;align-self:center;background:#ffd400;color:#222;font-weight:700;font-size:13px;letter-spacing:1px;padding:4px 12px;border-radius:20px;margin-bottom:12px;text-transform:uppercase;animation:dstcBlink 1.4s infinite}
+@keyframes dstcBlink{50%{opacity:.55}}
+.dstc-slide h2{margin:0 0 10px;font-size:34px;font-weight:700;line-height:1.2;color:#fff;font-family:'Bitter',Georgia,serif}
+.dstc-slide p{margin:0 0 16px;font-size:18px;color:#fff}
+.dstc-slide p b{color:#ffd400}
+.dstc-btns a{display:inline-block;margin:4px 6px;padding:10px 22px;border-radius:25px;font-weight:700;font-size:15px;text-decoration:none}
+.dstc-btn1{background:#fff;color:#c4162a!important}
+.dstc-btn2{border:2px solid #fff;color:#fff!important}
+.dstc-btns a:hover{opacity:.88;text-decoration:none}
+.dstc-nav{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border:0;border-radius:50%;background:rgba(0,0,0,.3);color:#fff;font-size:22px;line-height:40px;text-align:center;cursor:pointer;z-index:2;padding:0}
+.dstc-nav:hover{background:rgba(0,0,0,.55)}
+.dstc-prev{left:12px}.dstc-next{right:12px}
+.dstc-dots{position:absolute;bottom:12px;left:0;right:0;text-align:center;z-index:2}
+.dstc-dots button{width:10px;height:10px;margin:0 4px;border:0;padding:0;border-radius:50%;background:rgba(255,255,255,.5);cursor:pointer}
+.dstc-dots button.on{background:#fff;width:24px;border-radius:5px}
+/* News Updates highlight */
+.resolve-right .res-two-mian{background:linear-gradient(180deg,#fff6db 0%,#ffe2ad 100%);border:2px solid #f34a53;border-radius:0 0 10px 10px;box-shadow:0 6px 18px rgba(243,74,83,.22);padding-top:30px}
+.resolve-right .res-two-mian marquee p{background:#fff;border:0 !important;border-left:4px solid #f34a53 !important;border-radius:6px;padding:9px 11px !important;box-shadow:0 2px 6px rgba(0,0,0,.08)}
+@media (max-width:767px){
+ .dstc-slide{padding:28px 20px 40px;min-height:230px}
+ .dstc-slide h2{font-size:22px}
+ .dstc-slide p{font-size:15px}
+ .dstc-nav{display:none}
+}
+</style>
 </head>
 <body onLoad="openModal();">
 <!--start-header-->
@@ -94,7 +127,6 @@
 						<li><a href="services.html">OUR SERVICES</a></li>
 						<li><a href="start_new_iti.html">START NEW ITI</a></li>
 						<li><a href="iti_reaffiliation.html">ITI RE-AFFILIATION</a></li>
-						<li><a href="cbse.html">CSBSE & PMKVY</a></li>
 						<li><a href="contact.html">CONTACT US</a></li>
 					</ul>
 					</div>
@@ -114,19 +146,67 @@
     <!-- slider start-->
         <div id="amazingslider-1" style="display:block;position:relative;margin:0 auto;">
             <ul class="amazingslider-slides" style="display:none;">
+                <li><img src="images/slider/dst-3rd-shift.jpg" alt="DST and 3rd Shift ITI Affiliation Open" /></li>
                 <li><img src="images/slider/1.jpg" alt="ITI Consultancy" /></li>
                 <li><img src="images/slider/2.jpg" alt="ITI Consultant"/></li>
                 <li><img src="images/slider/3.jpg" alt="Open New ITI" /></li>
                 <li><img src="images/slider/4.jpg" alt="Start New ITI" /></li>
             </ul>
         </div>
+    <!-- slider end-->
+
+    <!-- DST / 3rd Shift / Portal carousel start -->
+    <div class="dstc" id="dstc">
+      <div class="dstc-view">
+        <div class="dstc-track">
+          <div class="dstc-slide dstc-s1">
+            <span class="dstc-tag">&#128227; Big Update</span>
+            <h2>DST &amp; 3rd Shift Affiliation Also Open!</h2>
+            <p>Apply for <b>DST (Dual System of Training)</b> &amp; <b>3rd Shift</b> affiliation &mdash; last date <b>31 October 2026</b></p>
+            <div class="dstc-btns"><a href="#" onclick="openModal();return false;" class="dstc-btn1">Enquire Now</a><a href="tel:9584705011" class="dstc-btn2">&#128222; 9584705011</a></div>
+          </div>
+          <div class="dstc-slide dstc-s2">
+            <span class="dstc-tag">Portal Open</span>
+            <h2>NCVT Affiliation Portal Open &ndash; Session 2027&ndash;28</h2>
+            <p>New ITI affiliation applications accepted till <b>31 October 2026</b></p>
+            <div class="dstc-btns"><a href="start_new_iti.html" class="dstc-btn1">Open New ITI</a><a href="tel:9584705011" class="dstc-btn2">&#128222; 9584705011</a></div>
+          </div>
+          <div class="dstc-slide dstc-s3">
+            <span class="dstc-tag">Re-Affiliation</span>
+            <h2>ITI Re-Affiliation 2027&ndash;28</h2>
+            <p>Renew your ITI affiliation &mdash; apply before <b>31 October 2026</b></p>
+            <div class="dstc-btns"><a href="iti_reaffiliation.html" class="dstc-btn1">Know More</a><a href="tel:6263026393" class="dstc-btn2">&#128222; 6263026393</a></div>
+          </div>
+        </div>
+        <button class="dstc-nav dstc-prev" type="button" aria-label="Previous">&#8249;</button>
+        <button class="dstc-nav dstc-next" type="button" aria-label="Next">&#8250;</button>
+        <div class="dstc-dots"></div>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root=document.getElementById('dstc'); if(!root) return;
+      var track=root.querySelector('.dstc-track'), slides=root.querySelectorAll('.dstc-slide'),
+          dotsBox=root.querySelector('.dstc-dots'), n=slides.length, i=0, timer=null, dots=[];
+      for(var k=0;k<n;k++){(function(k){var b=document.createElement('button');b.type='button';b.setAttribute('aria-label','Slide '+(k+1));b.onclick=function(){go(k);restart();};dotsBox.appendChild(b);dots.push(b);})(k);}
+      function go(k){i=(k+n)%n;track.style.transform='translateX(-'+(i*100)+'%)';for(var d=0;d<n;d++){dots[d].className=d===i?'on':'';}}
+      function restart(){clearInterval(timer);timer=setInterval(function(){go(i+1);},4500);}
+      root.querySelector('.dstc-prev').onclick=function(){go(i-1);restart();};
+      root.querySelector('.dstc-next').onclick=function(){go(i+1);restart();};
+      root.onmouseenter=function(){clearInterval(timer);}; root.onmouseleave=restart;
+      var x0=null; root.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;},{passive:true});
+      root.addEventListener('touchend',function(e){if(x0===null)return;var dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>40){go(dx<0?i+1:i-1);restart();}x0=null;});
+      go(0); restart();
+    })();
+    </script>
+    <!-- DST / 3rd Shift / Portal carousel end -->
     
 	<!--start-need-->
 	<div class="need">
 		<div class="container">
 			<div class="need-mian">
 				<div class="col-md-9 need-left">
-					<h3>New ITI Portal Open, Contact Mr. Shailendra Kuraichya</h3>
+					<h3>New ITI Portal Open till 31 Oct 2026, Contact Mr. Shailendra Kuraichya</h3>
 					<marquee behavior="scroll" direction="left">
                 	<p>Welcome To ITI Affiliation Consultancy, consultancy for Opening New ITI, ITI Re-affiliation, NCVT Affiliation, QCI Accrediation, Machine & Tools Availability, ITI Lab Setup, ITI Website Design, VTP, Manpower supply, Society Registration and many more... </p>
             </marquee>
@@ -179,8 +259,8 @@
                 	<div class="box">
                     <figure><img src="images/file1.png" alt="" class="img"></figure>
                     <div class="caption">
-                        <div class="txt1">Open CBSE School</div>	
-                        <a href="services.html" class="btn btn-danger"> Click here</a>									
+                        <div class="txt1">DST / 3rd Shift</div>	
+                        <a onclick="openModal();" href="#" class="btn btn-danger"> Click here</a>									
                     </div>
                     </div>
                 </li>
@@ -222,7 +302,7 @@
                     <figure><img src="images/file8.png" alt="" class="img"></figure>
                     <div class="caption">
                         <div class="txt1">PMKVY</div>
-                        <a href="cbse.html" class="btn btn-danger"> Click here</a>										
+                        <a href="contact.html" class="btn btn-danger"> Click here</a>										
                     </div>
                     </div>
                 </li>
@@ -284,13 +364,6 @@
 								<p><b>ITI Affiliation Consultancy</b> is your single, trusted partner for everything involved in starting and running an Industrial Training Institute. From <b>opening a new ITI</b> and <b>ITI re-affiliation</b> to <b>machine &amp; tools procurement, lab setup, and complete documentation</b>, we manage the entire journey end to end. Our work is carried out under the direct guidance of experienced government and industry professionals, so every file is prepared exactly to the latest <b>QCI, NCVT and DGT</b> norms. You focus on your vision &mdash; we handle the process, paperwork and approvals that turn it into a fully affiliated ITI college.</p>
 			<p><strong>Why choose us:</strong> With years of hands-on experience in <b>opening and re-affiliating ITI colleges</b> across Madhya Pradesh, Uttar Pradesh and beyond, we deliver complete, norm-compliant files at transparent and affordable processing fees. Our team guides you at every step &mdash; saving you time, avoiding costly mistakes, and giving your application the strongest possible chance of approval. With dedicated <b>24&times;7 support</b>, expert advice is always just one call away.</p>
 			<a href="about.html" class="read"> Read more...</a>
-<hr />
-<h4 style='background:#13a7d7; color:#fff; padding:5px 0;'>Open New CBSE School</h4>
-<p>Starting a school is a major undertaking, and choosing the right board is the first big decision. The <b>Central Board of Secondary Education (CBSE)</b> is one of India&rsquo;s most established and respected boards, with clear norms that every applicant school must meet to secure affiliation.</p>
-
-<p>The process to open a new CBSE school in india with the affiliation of cbse board requires a lot of efforts and perfection to get affiliated with CBSE Education Board.</p>
-<p>our team help you to build infrastructure, site, furniture and other setup to get affiliated from CBSE Board. for more information contact us Now.</p>
-			<a href="cbse.html" class="btn btn-danger">Contact Now</a>
 
 							</div>
 						</div>
@@ -304,7 +377,12 @@
 
   <p style="margin:0 0 14px; border-bottom:1px dashed #ccc; padding-bottom:10px;">
     <b style="color:#f34a53;">&#128276; Affiliation Portal Open</b><br>
-    Applications for <b>Session 2026&ndash;27</b> are now being accepted. Last date for submission is <b>30 June 2026</b> &mdash; apply today!
+    Applications for <b>Session 2027&ndash;28</b> are now being accepted. Portal is open till <b>31 October 2026</b> &mdash; apply today!
+  </p>
+
+  <p style="margin:0 0 14px; border-bottom:1px dashed #ccc; padding-bottom:10px;">
+    <b style="color:#f34a53;">&#128227; DST / 3rd Shift Affiliation Open</b><br>
+    Applications for <b>DST (Dual System of Training)</b> and <b>3rd Shift</b> affiliation are also open till <b>31 October 2026</b>.
   </p>
 
   <p style="margin:0 0 14px; border-bottom:1px dashed #ccc; padding-bottom:10px;">
@@ -313,13 +391,13 @@
   </p>
 
   <p style="margin:0 0 14px; border-bottom:1px dashed #ccc; padding-bottom:10px;">
-    <b style="color:#f34a53;">&#128260; ITI Re-Affiliation 2026&ndash;27</b><br>
+    <b style="color:#f34a53;">&#128260; ITI Re-Affiliation 2027&ndash;28</b><br>
     Renew your existing ITI affiliation on time. We prepare norm-compliant files for a smooth, hassle-free renewal.
   </p>
 
   <p style="margin:0 0 14px; border-bottom:1px dashed #ccc; padding-bottom:10px;">
-    <b style="color:#f34a53;">&#127979; CBSE School &amp; PMKVY</b><br>
-    Now offering affiliation support for <b>new CBSE schools</b> and <b>PMKVY / VTP</b> centres.
+    <b style="color:#f34a53;">&#127979; PMKVY &amp; VTP</b><br>
+    Now offering complete support for <b>PMKVY / VTP</b> centres.
   </p>
 
   <p style="margin:0 0 14px; border-bottom:1px dashed #ccc; padding-bottom:10px;">
@@ -343,7 +421,7 @@
                 <tr><td>08 Units minimum </td></tr>
                 <tr><td>For more information - 9584705011 (Mr. Shailendra Kuraichya) </td></tr>
                 <tr><td>Office No. 6263026393</td></tr>
-                <tr><td>The Affiliation Portal for Session 2026–27 is open. <br> last date for submission of affiliation applications is *30 June 2026*.</td></tr>
+                <tr><td>The Affiliation Portal for Session 2027–28 is open. <br> last date for submission of affiliation applications is <b>31 October 2026</b>.</td></tr>
                 <!--<tr><td>For Session 2018: File Submission Last Date 31st August 2018</td></tr>
                 <tr><td>For Session 2019: File Submission Last Date 31st December 2019</td></tr>
                 <tr><td>For Session 2020: File Submission Last Date 28th February 2020</td></tr>-->
